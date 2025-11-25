@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad Sama Sana | Dr. Nicasio Cavilla</title>
+    <meta name="description" content="Toma el control de tu salud con herramientas reales, guía médica y una comunidad de apoyo. Medicina Integrativa y Ayurveda.">
+    
+    <!-- Tailwind CSS (Estilos rápidos) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Colores de Marca -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sama: {
+                            green: '#8BC34A',      /* Verde Claro */
+                            darkGreen: '#558B2F',  /* Verde Oscuro */
+                            orange: '#F57C00',     /* Naranja */
+                            lightBg: '#F1F8E9',    /* Fondo suave */
+                            cream: '#FFFDE7',      /* Crema */
+                            text: '#333333'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Iconos (Ligeros y rápidos) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Librería para formatear texto de la IA -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        /* Optimizaciones visuales */
+        .hero-pattern {
+            background-color: #f3f4f6;
+            background-image: radial-gradient(#8BC34A 0.5px, transparent 0.5px), radial-gradient(#8BC34A 0.5px, #f3f4f6 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.3;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        
+        /* Estilos para la respuesta del Chatbot */
+        .ai-response ul { list-style-type: disc; margin-left: 1.5rem; margin-top: 0.5rem; }
+        .ai-response strong { color: #558B2F; }
+    </style>
+</head>
+<body class="font-sans text-sama-text antialiased bg-white">
+
+    <!-- Navbar (Menú Superior) -->
+    <nav class="fixed w-full z-50 top-0 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <!-- LOGO AQUÍ -->
+                    <img src="logo CSS.png" alt="Logo Comunidad Sama Sana" class="h-14 w-auto object-contain">
+                </div>
+                
+                <!-- Menú Escritorio -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#que-es" class="text-gray-600 hover:text-sama-green transition font-medium">¿Qué es?</a>
+                    <a href="#metodo" class="text-gray-600 hover:text-sama-green transition font-medium">Método</a>
+                    <a href="#ai-demo" class="text-sama-orange font-bold hover:text-orange-600 transition flex items-center gap-1"><i data-lucide="sparkles" class="w-4 h-4"></i> IA Ayurveda</a>
+                    <a href="#testimonios" class="text-gray-600 hover:text-sama-green transition font-medium">Testimonios</a>
+                    <a href="#precios" class="bg-sama-orange text-white px-6 py-2 rounded-full font-bold shadow-md hover:bg-orange-600 transition hover:shadow-lg transform hover:-translate-y-0.5">Sumarme Ahora</a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button outline-none">
+                        <i data-lucide="menu" class="w-8 h-8 text-sama-darkGreen"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú Móvil Desplegable -->
+        <div class="hidden mobile-menu md:hidden bg-white border-t border-gray-100">
+            <a href="#que-es" class="block py-4 px-6 text-sm hover:bg-sama-lightBg">¿Qué es?</a>
+            <a href="#metodo" class="block py-4 px-6 text-sm hover:bg-sama-lightBg">Método</a>
+            <a href="#ai-demo" class="block py-4 px-6 text-sm hover:bg-sama-lightBg text-sama-orange font-bold"><i data-lucide="sparkles" class="w-4 h-4 inline"></i> IA Ayurveda</a>
+            <a href="#testimonios" class="block py-4 px-6 text-sm hover:bg-sama-lightBg">Testimonios</a>
+            <a href="#precios" class="block py-4 px-6 text-sm text-sama-orange font-bold hover:bg-orange-50">Sumarme Ahora</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Portada) -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div class="absolute inset-0 hero-pattern -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center gap-12">
+            
+            <div class="lg:w-1/2 text-center lg:text-left fade-in-up">
+                <span class="inline-block py-1 px-3 rounded-full bg-sama-lightBg text-sama-darkGreen text-sm font-bold mb-4 border border-sama-green/20">
+                    Dr. Nicasio Cavilla - Médico especialista en Nutrición y Ayurveda
+                </span>
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Toma el control de tu <span class="text-sama-green">salud</span> con herramientas reales.
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Un lugar donde la frustración se transforma en esperanza. Únete a la comunidad impulsada por la guía de tu médico de confianza y objetivos similares a los tuyos.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#precios" class="bg-sama-orange text-white text-lg px-8 py-4 rounded-full font-bold shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                        Quiero Sumarme <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#que-es" class="bg-white text-sama-darkGreen border-2 border-sama-lightBg text-lg px-8 py-4 rounded-full font-bold hover:border-sama-green transition flex items-center justify-center">
+                        Saber más
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 relative fade-in-up delay-200">
+                <!-- FOTO PERFIL AQUÍ -->
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white bg-gray-100 aspect-[4/3] group">
+                     <img src="foto perfil.jpg" alt="Dr. Nicasio Cavilla" class="absolute inset-0 w-full h-full object-cover object-top hover:scale-105 transition duration-700">
+                     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                        <p class="text-white font-bold text-xl">Dr. Nicasio Cavilla</p>
+                        <p class="text-sama-green font-medium">Fundador</p>
+                     </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border-l-4 border-sama-orange hidden md:block">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-green-100 p-2 rounded-full">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-sama-green"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Sanación Activa</p>
+                            <p class="text-xs text-gray-500">Metodología comprobada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección ¿Es para vos? -->
+    <section id="que-es" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">¿Es esto para vos?</h2>
+                <p class="text-lg text-gray-600">Si te identificas con alguna de estas situaciones, estás en el lugar correcto.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4 items-start p-4 rounded-lg hover:bg-sama-lightBg transition">
+                    <div class="flex-shrink-0 mt-1"><i data-lucide="x-circle" class="text-red-400"></i></div>
+                    <p class="text-gray-700">Sentís que la medicina convencional no te ofrece una respuesta integral.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg hover:bg-sama-lightBg transition">
+                    <div class="flex-shrink-0 mt-1"><i data-lucide="x-circle" class="text-red-400"></i></div>
+                    <p class="text-gray-700">Tus estudios dan bien, pero vos te seguís sintiendo mal.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg hover:bg-sama-lightBg transition">
+                    <div class="flex-shrink-0 mt-1"><i data-lucide="x-circle" class="text-red-400"></i></div>
+                    <p class="text-gray-700">Te sentís abrumada/o con tanta información contradictoria.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg hover:bg-sama-lightBg transition">
+                    <div class="flex-shrink-0 mt-1"><i data-lucide="x-circle" class="text-red-400"></i></div>
+                    <p class="text-gray-700">Necesitás herramientas para gestionar tus emociones.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <div class="inline-block p-6 bg-sama-cream rounded-xl border border-yellow-200">
+                    <p class="text-xl font-medium text-sama-darkGreen">
+                        "No se trata de recibir más información, sino de <span class="font-bold underline decoration-sama-orange decoration-2">despertar tu poder</span> para usarla."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Método / 4 Inteligencias -->
+    <section id="metodo" class="py-20 bg-sama-lightBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">4 Inteligencias</h2>
+                <p class="text-lg text-gray-600">Un enfoque integral para potenciar tu bienestar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-sama-green">
+                        <i data-lucide="apple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Nutricional</h3>
+                    <p class="text-gray-600 text-sm">Diseñá una alimentación que te nutra de verdad: saludable, sostenible y alineada a vos.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                        <i data-lucide="brain-circuit"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Intelectual</h3>
+                    <p class="text-gray-600 text-sm">Entrená tu mente para crear hábitos y rutinas reales alineados a tus objetivos.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center mb-6 text-pink-500">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Emocional</h3>
+                    <p class="text-gray-600 text-sm">Gestioná tus emociones, transformá la relación con vos misma/o y construí vínculos sanos.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-6 text-purple-600">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Espiritual</h3>
+                    <p class="text-gray-600 text-sm">Reconectá con tu esencia y obtené una base sólida que le dé foco a tu vida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN IA: Asistente Gemini -->
+    <section id="ai-demo" class="py-20 bg-gradient-to-br from-sama-green/10 to-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-sama-green/5 rounded-full blur-3xl -z-10"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full shadow-sm text-sm font-bold text-sama-orange mb-4 border border-orange-100">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Potenciado por IA
+                </span>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Tu Brújula de Bienestar ✨</h2>
+                <p class="text-lg text-gray-600">
+                    ¿Te sentís abrumada/o? Contale brevemente a nuestro <strong>Asistente Ayurveda</strong> cómo estás hoy y recibí un consejo de bienestar personalizado al instante.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <label for="user-input" class="block text-sm font-medium text-gray-700 mb-2">
+                        ¿Cómo te sentís hoy? (Física o emocionalmente)
+                    </label>
+                    <textarea id="user-input" rows="3" class="w-full rounded-lg border-gray-300 border p-4 focus:ring-2 focus:ring-sama-green focus:border-transparent transition resize-none bg-gray-50" placeholder="Ej: Me siento con mucha ansiedad y me cuesta dormir... o Tengo digestión pesada..."></textarea>
+                    
+                    <button onclick="consultarBienestar()" id="btn-consultar" class="mt-4 w-full md:w-auto bg-sama-darkGreen text-white px-8 py-3 rounded-lg font-bold hover:bg-green-800 transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i> Recibir Consejo Ayurveda
+                    </button>
+                </div>
+                
+                <!-- Respuesta IA -->
+                <div id="ai-result-container" class="hidden bg-sama-cream border-t border-yellow-100 p-6 md:p-8">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-sama-green rounded-full flex items-center justify-center text-white">
+                                <i data-lucide="bot" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-sama-darkGreen mb-2">Consejo de Bienestar:</h4>
+                            <div id="ai-output" class="text-gray-700 leading-relaxed ai-response"></div>
+                            <div class="mt-4 pt-4 border-t border-yellow-200/50">
+                                <p class="text-xs text-gray-500 italic">
+                                    *Este es un consejo generado por IA con fines educativos basado en principios ayurvédicos generales. No reemplaza una consulta médica profesional. Únete a la comunidad para una guía experta del Dr. Cavilla.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modalidad -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-900 rounded-3xl text-white overflow-hidden shadow-2xl">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-12 flex flex-col justify-center">
+                        <h3 class="text-3xl font-bold mb-6">¿Cómo funciona?</h3>
+                        <ul class="space-y-6">
+                            <li class="flex gap-4">
+                                <div class="bg-sama-green/20 p-2 rounded h-fit"><i data-lucide="play-circle" class="text-sama-green"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-sama-green">Plataforma Online</h4>
+                                    <p class="text-gray-400 text-sm">Videos, audios, PDFs y guías teóricas esenciales.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="bg-sama-green/20 p-2 rounded h-fit"><i data-lucide="video" class="text-sama-green"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-sama-green">Sesiones en Vivo</h4>
+                                    <p class="text-gray-400 text-sm">Martes por medio (18:30hs ARG) con el Dr. Cavilla.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="bg-sama-green/20 p-2 rounded h-fit"><i data-lucide="users" class="text-sama-green"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-sama-green">Comunidad Privada</h4>
+                                    <p class="text-gray-400 text-sm">Apoyo mutuo, preguntas y experiencias compartidas.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative bg-gray-800 h-64 md:h-auto flex items-center justify-center">
+                         <div class="text-center opacity-30">
+                            <i data-lucide="laptop" class="w-32 h-32 mx-auto mb-4"></i>
+                            <span class="text-2xl font-bold">Aula Virtual</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="py-20 bg-sama-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Historias de Transformación</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-sama-green">
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="italic text-gray-600 mb-6">"En 20 días me había desinflamado y bajado casi 10 kilos. Pasé de estar triste a estar alegre y con ganas de conectar."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">M</div>
+                        <div>
+                            <p class="font-bold text-sm">Miriam V.</p>
+                            <p class="text-xs text-gray-400">Miembro de la comunidad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-sama-green">
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="italic text-gray-600 mb-6">"Los medicamentos ya no me hacían nada. Esto me ordenó. Se me normalizó la presión y el colesterol. Volví a sentirme bien."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">L</div>
+                        <div>
+                            <p class="font-bold text-sm">Liliana E.</p>
+                            <p class="text-xs text-gray-400">Miembro de la comunidad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-sama-green">
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="italic text-gray-600 mb-6">"Me sentía destrozado tras mi diagnóstico. Este camino me dio contención y claridad. Honestamente, me cambió la vida."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">D</div>
+                        <div>
+                            <p class="font-bold text-sm">Diego S.</p>
+                            <p class="text-xs text-gray-400">Miembro de la comunidad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonos de Regalo -->
+    <section class="py-16 bg-white border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-8 uppercase tracking-wide text-sama-orange">Regalos Exclusivos al Inscribirte</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 border border-gray-100 rounded-lg">
+                    <i data-lucide="book-open" class="mx-auto w-10 h-10 text-sama-green mb-3"></i>
+                    <h4 class="font-bold">Libro Digital</h4>
+                    <p class="text-sm text-gray-500">"Los secretos eternos de la salud" de A. Moritz.</p>
+                    <p class="text-xs font-bold text-sama-orange mt-2">Valor: $39.000 (GRATIS)</p>
+                </div>
+                <div class="p-6 border border-gray-100 rounded-lg">
+                    <i data-lucide="video" class="mx-auto w-10 h-10 text-sama-green mb-3"></i>
+                    <h4 class="font-bold">Curso Ayurveda</h4>
+                    <p class="text-sm text-gray-500">Grabación del curso intensivo completo.</p>
+                    <p class="text-xs font-bold text-sama-orange mt-2">Valor: $90.000 (GRATIS)</p>
+                </div>
+                <div class="p-6 border border-gray-100 rounded-lg">
+                    <i data-lucide="utensils" class="mx-auto w-10 h-10 text-sama-green mb-3"></i>
+                    <h4 class="font-bold">Recetario</h4>
+                    <p class="text-sm text-gray-500">Recetario de cocina Ayurveda para inspirarte.</p>
+                    <p class="text-xs font-bold text-sama-orange mt-2">Valor: $30.000 (GRATIS)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios Actualizados -->
+    <section id="precios" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Elige tu Plan de Transformación</h2>
+                <p class="text-lg text-gray-600">Invierte en tu salud hoy.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+                <!-- Plan 1: 3 Meses -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition border border-gray-100">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Plan Despertar</h3>
+                    <div class="text-sm text-gray-500 mb-6">Acceso por 3 meses</div>
+                    <!-- PRECIO ACTUALIZADO: 297.000 -->
+                    <div class="text-4xl font-extrabold text-gray-900 mb-6">$297.000 <span class="text-lg font-normal text-gray-500">ARS</span></div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Acceso a Plataforma</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Sesiones en vivo</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Comunidad Privada</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Todos los bonos</li>
+                    </ul>
+                    <button class="w-full py-3 border-2 border-sama-green text-sama-darkGreen font-bold rounded-lg hover:bg-green-50 transition">Elegir Plan</button>
+                </div>
+
+                <!-- Plan 2: 6 Meses (Destacado) -->
+                <div class="bg-white rounded-2xl p-8 shadow-2xl border-2 border-sama-green relative transform md:-translate-y-4">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-sama-orange text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">
+                        MÁS ELEGIDO
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Plan Transformar</h3>
+                    <div class="text-sm text-gray-500 mb-2">Acceso por 6 meses</div>
+                    <!-- AHORRO CALCULADO: (297k/3)*6 = 594k. Precio 516k. Ahorro 78k total (13k/mes) -->
+                    <div class="inline-block bg-green-100 text-sama-darkGreen text-xs font-bold px-2 py-1 rounded mb-4">Ahorrás $13.000 x mes</div>
+                    <!-- PRECIO ACTUALIZADO: 516.000 -->
+                    <div class="text-5xl font-extrabold text-gray-900 mb-6">$516.000 <span class="text-lg font-normal text-gray-500">ARS</span></div>
+                    <ul class="space-y-3 mb-8 text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-sama-green"></i> <strong>Todo lo del plan anterior</strong></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-sama-green"></i> Más tiempo de asimilación</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-sama-green"></i> Prioridad en soporte</li>
+                    </ul>
+                    <button class="w-full py-4 bg-sama-green text-white font-bold rounded-lg hover:bg-sama-darkGreen transition shadow-lg hover:shadow-xl">Empezar Transformación</button>
+                </div>
+
+                <!-- Plan 3: 1 Año -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition border border-gray-100">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Plan Integrar</h3>
+                    <div class="text-sm text-gray-500 mb-2">Acceso por 1 año</div>
+                    <!-- AHORRO CALCULADO: (297k/3)*12 = 1.188M. Precio 888k. Ahorro 300k total (25k/mes) -->
+                    <div class="inline-block bg-green-100 text-sama-darkGreen text-xs font-bold px-2 py-1 rounded mb-4">Ahorrás $25.000 x mes</div>
+                    <!-- PRECIO ACTUALIZADO: 888.000 -->
+                    <div class="text-4xl font-extrabold text-gray-900 mb-6">$888.000 <span class="text-lg font-normal text-gray-500">ARS</span></div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Acceso anual completo</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Mejor precio mensual</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sama-green"></i> Consolidación de hábitos</li>
+                    </ul>
+                    <button class="w-full py-3 border-2 border-sama-green text-sama-darkGreen font-bold rounded-lg hover:bg-green-50 transition">Elegir Plan</button>
+                </div>
+            </div>
+            
+            <!-- Garantía -->
+            <div class="max-w-3xl mx-auto mt-20 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="bg-gray-900 p-4 rounded-full mb-4">
+                        <i data-lucide="shield" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Garantía de Satisfacción de 15 Días</h4>
+                    <p class="text-gray-600 mb-4">
+                        Probá la membresía. Si después de participar no estás satisfecho/a, te devolvemos el 100% de tu inversión. Sin preguntas, sin vueltas.
+                    </p>
+                    <p class="font-bold text-sama-darkGreen">O mejorás, o es gratis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <span class="text-2xl font-bold block">COMUNIDAD sama sana</span>
+                    <span class="text-gray-400 text-sm">Medicina Integrativa y Ayurveda</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="mail"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 Comunidad Sama Sana. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT & IA -->
+    <script>
+        // 1. Inicializar iconos
+        lucide.createIcons();
+
+        // 2. Menú Móvil
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // 3. Smooth Scroll en links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add("hidden"); 
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 4. Efecto Sombra en Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('h-20', 'h-16');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('h-16', 'h-20');
+            }
+        });
+
+        // ----------------------------------------------------
+        // 5. INTEGRACIÓN GEMINI API (Lógica de IA)
+        // ----------------------------------------------------
+        
+        async function consultarBienestar() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const btn = document.getElementById('btn-consultar');
+            const resultContainer = document.getElementById('ai-result-container');
+            const output = document.getElementById('ai-output');
+            
+            if (!userInput) {
+                alert("Por favor, cuéntanos brevemente cómo te sientes.");
+                return;
+            }
+
+            // Estado de carga (Loading)
+            btn.disabled = true;
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Consultando...`;
+            lucide.createIcons();
+            
+            // --- PEGA TU API KEY AQUÍ ---
+            const apiKey = "AIzaSyCacwpmIT-xfsWdolhRGsY6oG5ZL1rsvA4"; 
+            // -----------------------------
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const systemInstruction = `
+                Eres un asistente empático y cálido de 'Comunidad Sama Sana', experto en Medicina Integrativa y Ayurveda básica.
+                Tu objetivo es leer cómo se siente el usuario y darle UN consejo breve, práctico y calmante basado en principios Ayurvédicos simples (rutina, alimentación o respiración).
+                
+                Reglas:
+                1. Sé muy breve (máximo 3 frases de consejo).
+                2. Tono: Calmado, comprensivo, como el Dr. Nicasio.
+                3. NO des diagnósticos médicos ni prometas curas.
+                4. Al final, SIEMPRE invita suavemente a unirse a la Comunidad Sama Sana para profundizar y obtener guía médica real.
+                5. Formato: Respuesta directa en texto, puedes usar negritas para resaltar algo clave.
+            `;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `El usuario dice: "${userInput}". Dame un consejo Ayurveda breve.` }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemInstruction }]
+                }
+            };
+
+            try {
+                // Función de reintento para robustez
+                const fetchWithRetry = async (retries = 3, delay = 1000) => {
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+                        return await response.json();
+                    } catch (err) {
+                        if (retries > 0) {
+                            await new Promise(res => setTimeout(res, delay));
+                            return fetchWithRetry(retries - 1, delay * 2);
+                        }
+                        throw err;
+                    }
+                };
+
+                const data = await fetchWithRetry();
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Lo siento, no pude conectar con la sabiduría Ayurveda en este momento. Por favor intenta de nuevo.";
+
+                // Mostrar respuesta
+                output.innerHTML = marked.parse(aiText); 
+                resultContainer.classList.remove('hidden');
+                resultContainer.classList.add('fade-in-up');
+                
+            } catch (error) {
+                console.error("Error AI:", error);
+                alert("Hubo un error al consultar. Asegúrate de haber puesto tu API Key correctamente en el código.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i data-lucide="sparkles" class="w-5 h-5"></i> Recibir Consejo Ayurveda`;
+                lucide.createIcons();
+            }
+        }
+    </script>
+</body>
+</html>
