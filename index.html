@@ -75,12 +75,14 @@
 <body class="font-sans text-sama-text antialiased bg-white">
 
     <!-- Navbar (Menú Superior) -->
-    <nav class="fixed w-full z-50 top-0 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+    <!-- CAMBIO: Altura inicial aumentada a h-40 (160px) para ser masivo -->
+    <nav class="fixed w-full z-50 top-0 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300 h-40" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full">
                 <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
                     <!-- LOGO AQUÍ -->
-                    <img src="logo CSS.png" alt="Logo Comunidad Sama Sana" class="h-14 w-auto object-contain">
+                    <!-- CAMBIO: Tamaño aumentado a h-36 (144px) -->
+                    <img src="logo CSS.png" alt="Logo Comunidad Sama Sana" id="logo-img" class="h-36 w-auto object-contain transition-all duration-300">
                 </div>
                 
                 <!-- Menú Escritorio -->
@@ -111,7 +113,8 @@
     </nav>
 
     <!-- Hero Section (Portada) -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+    <!-- CAMBIO: Padding superior aumentado a pt-48 y lg:pt-52 para compensar el header gigante -->
+    <section class="relative pt-48 pb-20 lg:pt-52 lg:pb-28 overflow-hidden">
         <div class="absolute inset-0 hero-pattern -z-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center gap-12">
             
@@ -523,15 +526,22 @@
             });
         });
 
-        // 4. Efecto Sombra en Navbar
+        // 4. Efecto Sombra en Navbar y Reducción de Tamaño
         const navbar = document.getElementById('navbar');
+        const logoImg = document.getElementById('logo-img'); // Nuevo selector para el logo
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
                 navbar.classList.add('shadow-md');
-                navbar.classList.replace('h-20', 'h-16');
+                // Al bajar: Nav se reduce a h-24 y Logo a h-20 (más compacto pero legible)
+                // Se ajusta de h-40/h-36 a h-24/h-20
+                navbar.classList.replace('h-40', 'h-24');
+                logoImg.classList.replace('h-36', 'h-20');
             } else {
                 navbar.classList.remove('shadow-md');
-                navbar.classList.replace('h-16', 'h-20');
+                // Al subir: Vuelve a tamaño gigante
+                navbar.classList.replace('h-24', 'h-40');
+                logoImg.classList.replace('h-20', 'h-36');
             }
         });
 
