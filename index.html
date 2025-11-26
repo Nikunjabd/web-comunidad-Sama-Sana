@@ -147,16 +147,18 @@
                         <p class="text-white font-bold text-xl">Dr. Nicasio Cavilla</p>
                         <p class="text-sama-green font-medium">Fundador</p>
                      </div>
-                </div>
-                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border-l-4 border-sama-orange hidden md:block">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-green-100 p-2 rounded-full">
-                            <i data-lucide="shield-check" class="w-6 h-6 text-sama-green"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold text-gray-800">Sanación Activa</p>
-                            <p class="text-xs text-gray-500">Metodología comprobada</p>
-                        </div>
+                    </div>
+                            
+                <!-- RECUADRO FLOTANTE SANACIÓN ACTIVA (Ahora visible en móviles) -->
+                <!-- Se ajustó la posición: centrado en móvil, a la izquierda en PC -->
+                <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 md:-bottom-6 md:-left-6 md:translate-x-0 bg-white p-4 rounded-xl shadow-lg border-l-4 border-sama-orange flex items-center gap-3 w-max max-w-[90%] z-10">
+                    <div class="bg-green-100 p-2 rounded-full flex-shrink-0">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-sama-green"></i>
+                    </div>
+                <div>
+                    
+                        <p class="font-bold text-gray-800 text-sm md:text-base">Sanación Activa</p>
+                        <p class="text-xs text-gray-500">Metodología comprobada</p>
                     </div>
                 </div>
             </div>
@@ -679,6 +681,7 @@
     </script>
 </body>
 </html>
+
 
 
 
